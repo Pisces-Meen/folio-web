@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | รพีพรรณ ขันตีชู (Rapeepan Khunteechoo)</title>
+    
+    <!-- Google Fonts: Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e3a8a',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        sky: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Glassmorphism */
+        body {
+            font-family: 'Prompt', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1e3a8a;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-400 via-blue-600 to-navy-900 z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- 1. Navbar -->
+    <nav class="fixed top-0 w-full z-40 glass-nav border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-800 to-sky-500 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                        RK
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-navy-900 dark:text-white text-base md:text-lg leading-tight">Rapeepan K.</span>
+                        <span class="text-[11px] text-sky-600 dark:text-sky-400 font-medium tracking-wider uppercase">Dentistry Portfolio</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-7 text-sm font-medium">
+                    <a href="#about" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">เกี่ยวกับฉัน</a>
+                    <a href="#skills" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">ทักษะ</a>
+                    <a href="#projects" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">ผลงานเด่น</a>
+                    <a href="#activities" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">กิจกรรม</a>
+                    <a href="#certificates" class="text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors">เกียรติบัตร</a>
+                    <a href="#contact" class="px-4 py-2 rounded-full bg-navy-800 hover:bg-sky-600 text-white transition-colors shadow-sm">ติดต่อฉัน</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-navy-800 dark:text-sky-400 flex items-center justify-center hover:ring-2 hover:ring-sky-500 transition-all">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Controls -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <button id="theme-toggle-mobile" aria-label="Toggle Dark Mode" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-navy-800 dark:text-sky-400 flex items-center justify-center">
+                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-sm"></i>
+                    </button>
+                    <button id="mobile-menu-btn" aria-label="Open Menu" class="w-10 h-10 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-navy-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#about" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">เกี่ยวกับฉัน</a>
+            <a href="#skills" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">ทักษะความสามารถ</a>
+            <a href="#projects" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">โครงงานและผลงาน</a>
+            <a href="#activities" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">กิจกรรมและจิตอาสา</a>
+            <a href="#certificates" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-slate-800">เกียรติบัตรและรางวัล</a>
+            <a href="#contact" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium bg-navy-800 text-white text-center mt-4">ติดต่อฉัน</a>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section class="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-sky-300/20 dark:bg-sky-500/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-800/15 dark:bg-blue-600/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Content (7 cols) -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left" data-aos="fade-right">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100/80 dark:bg-sky-900/40 border border-sky-200 dark:border-sky-700/50 text-sky-700 dark:text-sky-300 text-xs sm:text-sm font-medium">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
+                        </span>
+                        Ready for University / TCAS
+                    </div>
+
+                    <!-- Education Level & School -->
+                    <p class="text-sm sm:text-base font-medium text-sky-600 dark:text-sky-400">
+                        นักเรียนชั้นมัธยมศึกษาปีที่ 5 • แผนการเรียน วิทย์-คณิต Gifted • โรงเรียนวัดไร่ขิงวิทยา
+                    </p>
+
+                    <!-- Full Name -->
+                    <div>
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-navy-900 dark:text-white tracking-tight leading-tight">
+                            นางสาวรพีพรรณ ขันตีชู
+                        </h1>
+                        <p class="text-lg sm:text-2xl font-medium text-slate-500 dark:text-slate-400 mt-1">
+                            Rapeepan Khunteechoo
+                        </p>
+                    </div>
+
+                    <!-- Target Faculty -->
+                    <div class="p-4 rounded-2xl bg-white dark:bg-navy-900 border-l-4 border-sky-500 shadow-sm inline-block w-full sm:w-auto">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Target Faculty & University</p>
+                        <p class="text-base sm:text-lg font-bold text-navy-800 dark:text-sky-300 mt-0.5">
+                            <i class="fa-solid fa-tooth mr-2 text-sky-500"></i>คณะทันตแพทยศาสตร์ มหาวิทยาลัยมหิดล
+                        </p>
+                    </div>
+
+                    <!-- Tagline -->
+                    <p class="text-slate-600 dark:text-slate-300 italic text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+                        "Learning through curiosity, creating with passion."
+                    </p>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="https://drive.google.com/..." target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-navy-800 to-sky-600 hover:from-navy-900 hover:to-sky-700 text-white font-medium shadow-lg shadow-sky-500/25 flex items-center gap-2.5 transition-all hover:-translate-y-0.5">
+                            <i class="fa-solid fa-file-pdf text-lg"></i>
+                            <span>ดาวน์โหลด Portfolio (PDF)</span>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-white dark:bg-navy-900 text-navy-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:border-sky-500 dark:hover:border-sky-400 font-medium flex items-center gap-2.5 transition-all hover:-translate-y-0.5">
+                            <i class="fa-regular fa-paper-plane text-sky-500"></i>
+                            <span>ติดต่อสอบถาม</span>
+                        </a>
+                    </div>
+
+                    <!-- 3 Quick Stats -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200/80 dark:border-slate-800">
+                        <div class="bg-white/80 dark:bg-navy-900/80 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-800 shadow-sm text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-bold text-sky-600 dark:text-sky-400">4.00</div>
+                            <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">เกรดเฉลี่ยสะสม (GPAX)</div>
+                        </div>
+                        <div class="bg-white/80 dark:bg-navy-900/80 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-800 shadow-sm text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-bold text-navy-800 dark:text-white">3 รายการ</div>
+                            <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1 line-clamp-2" title="1.Community Engagement Program รุ่นที่ 2(CEP) 2.การแข่งขันตอบปัญหาอัจฉริยะภาพด้านวิทยาศาสตร์ 3.การแข่งขันประดิษฐ์รถยนต์พลังงานแสงอาทิตย์">
+                                โครงงาน CEP & แข่งขันวิทย์
+                            </div>
+                        </div>
+                        <div class="bg-white/80 dark:bg-navy-900/80 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-800 shadow-sm text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-bold text-sky-600 dark:text-sky-400">30 ชม.</div>
+                            <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">กิจกรรมและจิตอาสา</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Profile Image (5 cols) -->
+                <div class="lg:col-span-5 flex justify-center" data-aos="fade-left">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 animate-float">
+                        <!-- Glowing Backdrop -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-navy-800 via-sky-500 to-cyan-300 rounded-full blur-2xl opacity-40 dark:opacity-50 animate-pulse-slow"></div>
+                        
+                        <!-- Decorative Ring -->
+                        <div class="absolute -inset-3 rounded-full border-2 border-dashed border-sky-400/50 dark:border-sky-500/40"></div>
+                        
+                        <!-- Profile Image Frame (Replace src with your real photo URL) -->
+                        <div class="relative w-full h-full rounded-full p-2 bg-white dark:bg-navy-900 shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
+                                alt="นางสาวรพีพรรณ ขันตีชู" 
+                                class="w-full h-full object-cover rounded-full"
+                            >
+                        </div>
+
+                        <!-- Floating Badge 1 -->
+                        <div class="absolute top-6 -left-4 bg-white dark:bg-navy-900 px-3.5 py-2 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center">
+                                <i class="fa-solid fa-flask"></i>
+                            </div>
+                            <div class="text-xs">
+                                <p class="font-bold text-navy-900 dark:text-white">Gifted Sci-Math</p>
+                                <p class="text-slate-500 text-[10px]">GPAX 4.00</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2 -->
+                        <div class="absolute bottom-8 -right-4 bg-white dark:bg-navy-900 px-3.5 py-2 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-navy-800 text-white flex items-center justify-center">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <div class="text-xs">
+                                <p class="font-bold text-navy-900 dark:text-white">Health & Design</p>
+                                <p class="text-slate-500 text-[10px]">Art meets Science</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. About Me Section -->
+    <section id="about" class="py-20 bg-white dark:bg-navy-900/50 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-sky-600 dark:text-sky-400 font-semibold text-sm tracking-wider uppercase">About Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white mt-2">ประวัติการศึกษาและแนวคิดการเรียนรู้</h2>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Column 1: Education & Interest -->
+                <div class="bg-slate-50 dark:bg-navy-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-navy-800 text-white flex items-center justify-center text-xl shadow-md">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-navy-900 dark:text-white">ประวัติการศึกษา & ความสนใจ</h3>
+                            <p class="text-sm text-sky-600 dark:text-sky-400">Education & Passion</p>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                        ปัจจุบันกำลังศึกษาอยู่ชั้น <strong class="text-navy-900 dark:text-white">มัธยมศึกษาปีที่ 5</strong> แผนการเรียน <strong class="text-sky-600 dark:text-sky-400">วิทย์-คณิต Gifted</strong> โรงเรียนวัดไร่ขิงวิทยา ด้วยผลการเรียนเฉลี่ยสะสม (GPAX) <strong class="text-navy-900 dark:text-white">4.00</strong> มีความสนใจอย่างลึกซึ้งด้าน <strong class="text-navy-900 dark:text-white">วิทยาศาสตร์สุขภาพ การวาดรูป การออกแบบ และฟิสิกส์ประยุกต์กับชีวิตประจำวัน</strong> ซึ่งเป็นพื้นฐานสำคัญในการบูรณาการศาสตร์และศิลป์เพื่อศึกษาต่อในคณะทันตแพทยศาสตร์ มหาวิทยาลัยมหิดล
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-heart-pulse text-sky-500"></i>
+                            <span>วิทยาศาสตร์สุขภาพ</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-pen-nib text-sky-500"></i>
+                            <span>การวาดรูป & ดีไซน์</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-atom text-sky-500"></i>
+                            <span>ฟิสิกส์ประยุกต์</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-award text-sky-500"></i>
+                            <span>GPAX 4.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Learning Mindset -->
+                <div class="bg-slate-50 dark:bg-navy-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-xl shadow-md">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-navy-900 dark:text-white">แนวคิดในการเรียนรู้</h3>
+                            <p class="text-sm text-sky-600 dark:text-sky-400">Core Learning Philosophy</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl bg-white dark:bg-navy-950 border border-slate-100 dark:border-slate-800 flex items-start gap-3.5">
+                            <div class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 font-bold flex items-center justify-center shrink-0 mt-0.5">1</div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 dark:text-white text-base">Continuous Learning</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">ชอบเรียนรู้สิ่งใหม่ๆ เปิดใจรับความรู้รอบด้าน และลงมือทำจริงเพื่อสร้างประสบการณ์</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-white dark:bg-navy-950 border border-slate-100 dark:border-slate-800 flex items-start gap-3.5">
+                            <div class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 font-bold flex items-center justify-center shrink-0 mt-0.5">2</div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 dark:text-white text-base">Teamwork & Leadership</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">ทำงานร่วมกับผู้อื่นได้ดี รับฟังความคิดเห็น กล้าแสดงออก และพร้อมรับผิดชอบหน้าที่</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-white dark:bg-navy-950 border border-slate-100 dark:border-slate-800 flex items-start gap-3.5">
+                            <div class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 font-bold flex items-center justify-center shrink-0 mt-0.5">3</div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 dark:text-white text-base">Problem Solving</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">คิดวิเคราะห์อย่างมีเหตุผล เข้าใจแก่นแท้ของปัญหา และแก้ไขปัญหาอย่างเป็นระบบ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Skills & Competencies -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-sky-600 dark:text-sky-400 font-semibold text-sm tracking-wider uppercase">Skills & Competencies</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white mt-2">ทักษะและความสามารถรอบด้าน</h2>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Academic & Core Skills -->
+                <div class="bg-white dark:bg-navy-900 p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-800 text-white flex items-center justify-center text-2xl mb-6 shadow-md">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">ทักษะวิชาการและความถนัด</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Academic & Artistic Aptitude</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">การทำโครงงานวิทยาศาสตร์</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">การดีไซน์และวาดภาพ (Design & Art)</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">การประยุกต์ฟิสิกส์และวิทยาศาสตร์สุขภาพ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Digital Tools -->
+                <div class="bg-white dark:bg-navy-900 p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-2xl mb-6 shadow-md">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">เครื่องมือและเทคโนโลยี</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Digital & Productivity Tools</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-wand-magic-sparkles text-sky-500"></i>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Canva (Graphic & Presentation)</span>
+                            </div>
+                            <span class="text-xs px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300">Expert</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-film text-sky-500"></i>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-200">CapCut (Video Editing)</span>
+                            </div>
+                            <span class="text-xs px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300">Proficient</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-brands fa-github text-sky-500"></i>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Microsoft Word & GitHub</span>
+                            </div>
+                            <span class="text-xs px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300">Working</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Soft Skills -->
+                <div class="bg-white dark:bg-navy-900 p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-800 to-sky-500 text-white flex items-center justify-center text-2xl mb-6 shadow-md">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">ทักษะทางสังคม</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Interpersonal & Soft Skills</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <i class="fa-solid fa-handshake text-sky-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">การทำงานเป็นทีม (Teamwork)</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <i class="fa-solid fa-lightbulb text-sky-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">ความคิดสร้างสรรค์ (Creativity)</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-950">
+                            <i class="fa-solid fa-scale-balanced text-sky-500"></i>
+                            <span class="text-sm font-medium text-slate-700 dark:text-slate-200">การแยกแยะเรื่องส่วนตัวและเรื่องงาน (Professionalism)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Projects & Academic Works -->
+    <section id="projects" class="py-20 bg-white dark:bg-navy-900/50 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-sky-600 dark:text-sky-400 font-semibold text-sm tracking-wider uppercase">Projects & Academic Works</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white mt-2">โครงงานและผลงานวิชาการเด่น</h2>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Featured Main Project (8 cols) -->
+                <div class="lg:col-span-8 bg-slate-50 dark:bg-navy-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 overflow-hidden shadow-sm card-hover flex flex-col justify-between" data-aos="fade-up">
+                    <div>
+                        <div class="relative h-60 sm:h-72 bg-gradient-to-r from-navy-900 via-navy-800 to-sky-600 p-8 flex flex-col justify-between text-white overflow-hidden">
+                            <div class="absolute right-0 bottom-0 opacity-10 text-9xl -mr-6 -mb-6">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 z-10">
+                                <span class="px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold tracking-wide">
+                                    โครงงานวิชาการ • CEP รุ่นที่ 2
+                                </span>
+                                <span class="text-xs text-sky-200 font-medium">
+                                    <i class="fa-solid fa-location-dot mr-1"></i>เกาะลัดอีแท่น
+                                </span>
+                            </div>
+                            <div class="z-10">
+                                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold leading-snug">
+                                    โครงการพัฒนาแหล่งเรียนรู้และส่งเสริมภาพลักษณ์ไร่แสนรัก ณ เกาะลัดอีแท่น
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="p-6 sm:p-8">
+                            <h4 class="text-sm font-bold text-navy-800 dark:text-sky-400 uppercase tracking-wider mb-2">รายละเอียดโครงงาน</h4>
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                                เป็นการทำงานร่วมกับ <strong class="text-navy-900 dark:text-white">โรงเรียนมหิดลวิทยานุสรณ์</strong> ในโครงการ <strong class="text-sky-600 dark:text-sky-400">Community Engagement Program รุ่นที่ 2 (CEP)</strong> เพื่อลงพื้นที่ศึกษาบริบทชุมชนอย่างลึกซึ้ง เน้นการทำความเข้าใจความต้องการของคนในพื้นที่ (Empathy) และนำกระบวนการทางวิทยาศาสตร์มาประยุกต์ใช้ในการแก้ไขปัญหา พร้อมทั้งพัฒนาสื่อและส่งเสริมภาพลักษณ์แหล่งเรียนรู้ให้ยั่งยืน
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-2">
+                        <p class="text-xs font-semibold text-slate-400 uppercase mb-3">เครื่องมือและทักษะที่ใช้</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-lg bg-sky-100/80 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-medium">Canva</span>
+                            <span class="px-3 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">GitHub</span>
+                            <span class="px-3 py-1 rounded-lg bg-blue-100/80 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium">Microsoft Word</span>
+                            <span class="px-3 py-1 rounded-lg bg-teal-100/80 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 text-xs font-medium">การเข้าหาและทำความเข้าใจชุมชน</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Competitions Highlights (4 cols) -->
+                <div class="lg:col-span-4 flex flex-col gap-6" data-aos="fade-up" data-aos-delay="150">
+                    <!-- Competition 1 -->
+                    <div class="flex-1 bg-slate-50 dark:bg-navy-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 text-xs font-semibold">การแข่งขันวิชาการ</span>
+                                <i class="fa-solid fa-brain text-sky-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">
+                                การแข่งขันตอบปัญหาอัจฉริยภาพด้านวิทยาศาสตร์
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                ทดสอบความรู้ความเข้าใจเชิงลึกและการวิเคราะห์โจทย์ปัญหาทางวิทยาศาสตร์อย่างรวดเร็วและแม่นยำ
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex gap-2">
+                            <span class="text-xs px-2.5 py-1 rounded bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Science Quiz</span>
+                            <span class="text-xs px-2.5 py-1 rounded bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Analytical Thinking</span>
+                        </div>
+                    </div>
+
+                    <!-- Competition 2 -->
+                    <div class="flex-1 bg-slate-50 dark:bg-navy-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-navy-800 text-white text-xs font-semibold">สิ่งประดิษฐ์ & ฟิสิกส์</span>
+                                <i class="fa-solid fa-solar-panel text-sky-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">
+                                การแข่งขันประดิษฐ์รถยนต์พลังงานแสงอาทิตย์
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                ประยุกต์ใช้หลักการฟิสิกส์ กลศาสตร์ และพลังงานสะอาดในการออกแบบและสร้างต้นแบบยานยนต์พลังงานแสงอาทิตย์
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800 flex gap-2">
+                            <span class="text-xs px-2.5 py-1 rounded bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Applied Physics</span>
+                            <span class="text-xs px-2.5 py-1 rounded bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Engineering Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Activities & Leadership (Timeline) -->
+    <section id="activities" class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-sky-600 dark:text-sky-400 font-semibold text-sm tracking-wider uppercase">Activities & Leadership</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white mt-2">กิจกรรม จิตอาสา และประสบการณ์</h2>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative border-l-2 border-sky-400 dark:border-sky-600 ml-4 md:ml-8 space-y-10">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 md:pl-12" data-aos="fade-left">
+                    <!-- Timeline Dot -->
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-sky-500 border-4 border-white dark:border-navy-950 shadow"></div>
+                    
+                    <div class="bg-white dark:bg-navy-900 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-3.5 py-1 rounded-full bg-navy-800 text-white text-xs font-bold">
+                                ปี พ.ศ. 2568
+                            </span>
+                            <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-900/40 px-3 py-1 rounded-full">
+                                <i class="fa-solid fa-hospital mr-1"></i>จิตอาสารามาธิบดี
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">
+                            นักเรียนอาสา • โครงการจิตอาสารามาธิบดี
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                            เข้าร่วมปฏิบัติหน้าที่จิตอาสา ณ โรงพยาบาลรามาธิบดี เพื่อเข้าไปศึกษาเรียนรู้ ช่วยเหลืออำนวยความสะดวกผู้ป่วย และสังเกตการณ์การทำงานจริงของบุคลากรทางการแพทย์ ทำให้เข้าใจระบบการทำงานในสถานพยาบาล ความเสียสละ และสร้างแรงบันดาลใจในการก้าวสู่สายวิชาชีพทันตแพทย์
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 md:pl-12" data-aos="fade-left" data-aos-delay="100">
+                    <!-- Timeline Dot -->
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-navy-800 dark:bg-sky-400 border-4 border-white dark:border-navy-950 shadow"></div>
+                    
+                    <div class="bg-white dark:bg-navy-900 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-3.5 py-1 rounded-full bg-sky-500 text-white text-xs font-bold">
+                                โครงการพัฒนาชุมชน
+                            </span>
+                            <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+                                <i class="fa-solid fa-users mr-1"></i>MWIT CEP รุ่นที่ 2
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">
+                            ผู้เข้าร่วมโครงการ Community Engagement Program รุ่นที่ 2 (CEP)
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                            ร่วมมือกับโรงเรียนมหิดลวิทยานุสรณ์ในการลงพื้นที่ชุมชนเกาะลัดอีแท่น ฝึกทักษะการสื่อสาร การทำงานร่วมกับผู้อื่น และการออกแบบนวัตกรรมเพื่อพัฒนาแหล่งเรียนรู้ในชุมชน (รวมชั่วโมงกิจกรรมและจิตอาสาสะสมกว่า 30 ชั่วโมง)
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Certificates & Awards -->
+    <section id="certificates" class="py-20 bg-white dark:bg-navy-900/50 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-sky-600 dark:text-sky-400 font-semibold text-sm tracking-wider uppercase">Certificates & Awards</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white mt-2">เกียรติบัตรและความภาคภูมิใจ</h2>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Certificate 1 -->
+                <div class="bg-slate-50 dark:bg-navy-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                                <i class="fa-solid fa-circle-check"></i> Verified
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">
+                            เกียรติบัตรโครงการ Community Engagement Program รุ่นที่ 2 (CEP)
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            โครงการพัฒนาแหล่งเรียนรู้และส่งเสริมภาพลักษณ์ไร่แสนรัก ณ เกาะลัดอีแท่น
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center gap-2 text-xs font-semibold text-navy-800 dark:text-sky-400">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>หน่วยงานที่มอบ: โรงเรียนมหิดลวิทยานุสรณ์</span>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="bg-slate-50 dark:bg-navy-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-navy-800 text-white flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                                <i class="fa-solid fa-circle-check"></i> Verified
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">
+                            เกียรติบัตรนักเรียนอาสา โครงการจิตอาสารามาธิบดี (ปี 2568)
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            การเข้าร่วมศึกษา ช่วยเหลือ และสังเกตการณ์การทำงานของบุคลากรทางการแพทย์
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center gap-2 text-xs font-semibold text-navy-800 dark:text-sky-400">
+                        <i class="fa-solid fa-hospital"></i>
+                        <span>หน่วยงานที่มอบ: คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี</span>
+                    </div>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="bg-slate-50 dark:bg-navy-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                                <i class="fa-solid fa-circle-check"></i> Verified
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">
+                            เกียรติบัตรการแข่งขันตอบปัญหาอัจฉริยภาพด้านวิทยาศาสตร์ & รถยนต์พลังงานแสงอาทิตย์
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">
+                            ตัวแทนเข้าร่วมการแข่งขันทักษะทางวิทยาศาสตร์และสิ่งประดิษฐ์นวัตกรรม
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center gap-2 text-xs font-semibold text-navy-800 dark:text-sky-400">
+                        <i class="fa-solid fa-school"></i>
+                        <span>หน่วยงานที่มอบ: โรงเรียนวัดไร่ขิงวิทยา / เครือข่ายวิชาการ</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Contact & Footer -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-sky-600 dark:text-sky-400 font-semibold text-sm tracking-wider uppercase">Contact Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy-900 dark:text-white mt-2">ช่องทางการติดต่อ</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-3">ยินดีรับคำแนะนำ สอบถามข้อมูลเพิ่มเติม หรือพูดคุยแลกเปลี่ยนประสบการณ์</p>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Contact Cards (5 cols) -->
+                <div class="lg:col-span-5 space-y-4" data-aos="fade-right">
+                    <!-- Email Card -->
+                    <a href="mailto:m.rapeepan2503@gmail.com" class="flex items-center gap-4 p-5 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover group">
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl group-hover:bg-sky-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Email</p>
+                            <p class="text-sm sm:text-base font-bold text-navy-900 dark:text-white truncate">m.rapeepan2503@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <!-- Phone Card -->
+                    <a href="tel:0955082218" class="flex items-center gap-4 p-5 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover group">
+                        <div class="w-12 h-12 rounded-xl bg-navy-800 text-white flex items-center justify-center text-xl group-hover:bg-sky-500 transition-colors">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase">โทรศัพท์</p>
+                            <p class="text-sm sm:text-base font-bold text-navy-900 dark:text-white">095-508-2218</p>
+                        </div>
+                    </a>
+
+                    <!-- Instagram Card -->
+                    <a href="https://instagram.com/rrr_meen" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-5 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800 shadow-sm card-hover group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Instagram</p>
+                            <p class="text-sm sm:text-base font-bold text-navy-900 dark:text-white">@rrr_meen</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Interactive Contact Form (7 cols) -->
+                <div class="lg:col-span-7 bg-white dark:bg-navy-900 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-6">ส่งข้อความถึงรพีพรรณ</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="sender-name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">ชื่อ-นามสกุล / หน่วยงาน</label>
+                                <input type="text" id="sender-name" required placeholder="ระบุชื่อของคุณ" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                            </div>
+                            <div>
+                                <label for="sender-email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">อีเมลติดต่อกลับ</label>
+                                <input type="email" id="sender-email" required placeholder="example@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="sender-subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">หัวข้อเรื่อง</label>
+                            <input type="text" id="sender-subject" required placeholder="เช่น สอบถามข้อมูลการยื่นพอร์ต / คณะทันตแพทยศาสตร์" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                        </div>
+                        <div>
+                            <label for="sender-message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">ข้อความ</label>
+                            <textarea id="sender-message" rows="4" required placeholder="พิมพ์ข้อความของคุณที่นี่..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"></textarea>
+                        </div>
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-navy-800 to-sky-600 hover:from-navy-900 hover:to-sky-700 text-white font-medium shadow-md flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>ส่งข้อความ</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-slate-300 py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-bold text-white text-lg">นางสาวรพีพรรณ ขันตีชู (Rapeepan Khunteechoo)</p>
+                <p class="text-xs text-slate-400 mt-1">โรงเรียนวัดไร่ขิงวิทยา • แผนการเรียน วิทย์-คณิต Gifted</p>
+            </div>
+            <p class="text-xs text-slate-400">
+                © 2026 Rapeepan Khunteechoo. Designed for TCAS & University Portfolio.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating Back-to-Top Button -->
+    <button id="back-to-top" aria-label="Back to top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-navy-800 hover:bg-sky-600 text-white shadow-lg flex items-center justify-center opacity-0 invisible translate-y-4 transition-all duration-300 z-40">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-24 sm:translate-x-0 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-navy-900 dark:bg-white text-white dark:text-navy-900 shadow-2xl border border-sky-500/30 opacity-0 invisible translate-y-4 transition-all duration-300">
+        <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <p class="font-bold text-sm">ส่งข้อความสำเร็จ!</p>
+            <p class="text-xs text-slate-300 dark:text-slate-600">ขอบคุณที่ติดต่อเข้ามา รพีพรรณจะรีบตอบกลับโดยเร็วที่สุด</p>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Interactive Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 60
+        });
+
+        // 1. Dark Mode / Light Mode Toggle with localStorage
+        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+        function updateThemeIcons(isDark) {
+            if (isDark) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeIconMobile.classList.remove('fa-moon');
+                themeIconMobile.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeIconMobile.classList.remove('fa-sun');
+                themeIconMobile.classList.add('fa-moon');
+            }
+        }
+
+        // Check saved preference
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            updateThemeIcons(true);
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.classList.toggle('dark');
+            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Scroll Progress Bar & Back-to-Top Button
+        const scrollProgress = document.getElementById('scroll-progress');
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgress.style.width = scrollPercent + '%';
+
+            if (scrollTop > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 4. Interactive Contact Form & Toast Notification
+        const contactForm = document.getElementById('contact-form');
+        const toast = document.getElementById('toast');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show Toast
+            toast.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+            
+            // Reset Form
+            contactForm.reset();
+
+            // Hide Toast after 4 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'invisible', 'translate-y-4');
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
